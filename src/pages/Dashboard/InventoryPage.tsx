@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useQueryClient, useMutation, useQuery } from '@tanstack/react-query';
 import { getProducts, createProduct, updateProduct, deleteProduct, getCategories } from '@/services/api';
 import { useAuth } from '@/contexts/AuthContext';
-import { Product, Category } from '@/types';
+import { Product, Category, ProductTranslations } from '@/types';
 import { PlusCircle, Search, Edit, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -158,14 +158,14 @@ const InventoryPage = () => {
     e.preventDefault();
     
     // Make sure English name is set
-    const nameTranslations = {
+    const nameTranslations: ProductTranslations = {
       en: productForm.nameTranslations.en || productForm.name,
       te: productForm.nameTranslations.te || ''
     };
     
     // Get category translations
     const selectedCategory = categories.find(cat => cat.name === productForm.category);
-    const categoryTranslations = selectedCategory?.nameTranslations || { 
+    const categoryTranslations: ProductTranslations = selectedCategory?.nameTranslations || { 
       en: productForm.category, 
       te: '' 
     };

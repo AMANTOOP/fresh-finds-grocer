@@ -18,23 +18,28 @@ export interface Store {
 export interface Product {
   id: string;
   name: string;
-  nameTranslations: Record<string, string>;
+  nameTranslations: ProductTranslations;
   category: string;
-  categoryTranslations?: Record<string, string>;
+  categoryTranslations?: ProductTranslations;
   price: number;
   quantity: number;
   unit: string;
-  unitTranslations?: Record<string, string>;
+  unitTranslations?: ProductTranslations;
   image?: string;
   storeId: string;
   createdAt: string;
   updatedAt: string;
 }
 
+export interface ProductTranslations {
+  en: string;
+  te: string;
+}
+
 export interface Category {
   id: string;
   name: string;
-  nameTranslations: Record<string, string>;
+  nameTranslations: ProductTranslations;
 }
 
 export type Language = "en" | "te";
