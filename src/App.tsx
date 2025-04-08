@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { AuthProvider } from "./contexts/AuthContext";
 import { LanguageProvider } from "./contexts/LanguageContext";
+import { StockProvider } from "./contexts/StockContext";
 
 // Layout Components
 import Header from "./components/Header";
@@ -29,6 +30,7 @@ import InventoryPage from "./pages/Dashboard/InventoryPage";
 const queryClient = new QueryClient();
 
 const App = () => (
+  <StockProvider>
   <QueryClientProvider client={queryClient}>
     <AuthProvider>
       <LanguageProvider>
@@ -64,6 +66,7 @@ const App = () => (
       </LanguageProvider>
     </AuthProvider>
   </QueryClientProvider>
+  </StockProvider>
 );
 
 export default App;

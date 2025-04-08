@@ -46,7 +46,7 @@ export const stores: Store[] = [
     name: 'City Grocers',
     location: 'Vijayawada',
     ownerId: '3',
-    image: 'https://images.unsplash.com/photo-1604719312566-8912e9c8a47a?q=80&w=1000&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1516594798947-e65505dbb29d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
   }
 ];
 
@@ -152,7 +152,7 @@ export const products: Product[] = [
     quantity: 120,
     unit: 'kg',
     unitTranslations: { en: 'kg', te: 'కిలో' },
-    image: 'https://images.unsplash.com/photo-1618512496248-a4b08aaf1b77?q=80&w=1000&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1618512496248-a07fe83aa8cb?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     storeId: '3',
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString()
