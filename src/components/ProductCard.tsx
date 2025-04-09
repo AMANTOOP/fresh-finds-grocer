@@ -23,6 +23,8 @@ const ProductCard: React.FC<ProductCardProps> = ({
   const isAdmin = user?.role === "admin" && user?.storeId === product.storeId;
 
   const [quantity, setQuantity] = useState<number | null>(null);
+  const [notified, setNotified] = useState(false);
+  const [loadingNotify, setLoadingNotify] = useState(false);
 
   useEffect(() => {
     const fetchQuantity = async () => {
@@ -41,6 +43,33 @@ const ProductCard: React.FC<ProductCardProps> = ({
       minimumFractionDigits: 0,
       maximumFractionDigits: 0,
     }).format(price);
+  };
+
+  const handleNotifyMe = async () => {
+    setLoadingNotify(true);
+    try {
+      const res = await fetch("http://localhost:3000/notify", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          item: product.name.toLowerCase(),
+          telegram_id: "5965187701", // replace with your Telegram ID
+        }),
+      });
+
+      const result = await res.json();
+      if (result.success) {
+        setNotified(true);
+      } else {
+        alert("❌ Failed to register notification.");
+      }
+    } catch (err) {
+      console.error("Notify error:", err);
+      alert("⚠️ Something went wrong.");
+    }
+    setLoadingNotify(false);
   };
 
   return (
@@ -82,9 +111,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
             </span>
             {quantity !== null ? (
               quantity === 0 ? (
-                <span className="text-red-500 font-semibold">
-                  {"Sold Out"}
-                </span>
+                <span className="text-red-500 font-semibold">Sold Out</span>
               ) : (
                 <span>
                   {quantity}{" "}
@@ -96,7 +123,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
             )}
           </div>
 
-          {isAdmin && (
+          {isAdmin ? (
             <div className="flex space-x-2">
               {onEdit && (
                 <Button
@@ -119,6 +146,21 @@ const ProductCard: React.FC<ProductCardProps> = ({
                 </Button>
               )}
             </div>
+          ) : (
+            quantity === 0 && (
+              <Button
+                size="sm"
+                disabled={loadingNotify || notified}
+                onClick={handleNotifyMe}
+                className="text-white bg-blue-600 hover:bg-blue-700"
+              >
+                {notified
+                  ? "✅ You'll be notified"
+                  : loadingNotify
+                  ? "⏳ Submitting..."
+                  : "Notify Me"}
+              </Button>
+            )
           )}
         </div>
       </div>
