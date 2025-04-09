@@ -55,7 +55,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         },
         body: JSON.stringify({
           item: product.name.toLowerCase(),
-          telegram_id: "5965187701", // replace with your Telegram ID
+          telegram_id: "1706814334", // replace with your Telegram ID
         }),
       });
 
