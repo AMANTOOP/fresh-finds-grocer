@@ -48,7 +48,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   const handleNotifyMe = async () => {
     setLoadingNotify(true);
     try {
-      const res = await fetch("http://localhost:3000/notify", {
+      const res = await fetch("https://stock-backend-jxr2.onrender.com/notify", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
